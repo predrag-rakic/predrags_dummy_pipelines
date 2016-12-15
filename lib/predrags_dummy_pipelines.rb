@@ -39,9 +39,11 @@ module PredragsDummyPipelines
       @deploys.map {|deploy| puts deploy.show }
     end
   end
-end
 
-a = PredragsDummyPipelines.parse_
-e = PredragsDummyPipelines::Pipeline.new a
-e.run
-e.show
+  def self.test
+    a = PredragsDummyPipelines.parse_
+    e = PredragsDummyPipelines::Pipeline.new a
+    e.run
+    e.show
+  end
+end
