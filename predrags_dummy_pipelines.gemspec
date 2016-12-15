@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{My first Gem}
   spec.description   = %q{Dummy pipeline}
-  spec.homepage      = "https://github.com/predrag-rakic/dummy_pipelines"
+  spec.homepage      = "https://github.com/predrag-rakic/predrags_dummy_pipelines"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
