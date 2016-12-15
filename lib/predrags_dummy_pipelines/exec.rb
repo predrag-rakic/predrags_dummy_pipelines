@@ -35,5 +35,9 @@ module PredragsDummyPipelines
     def show
       [{exec_name: @name, cmd: @cmd, test: @test}, @cmd_results, @test_results]
     end
+
+    def results
+      [@cmd_results, @test_results]
+    end
   end
 end

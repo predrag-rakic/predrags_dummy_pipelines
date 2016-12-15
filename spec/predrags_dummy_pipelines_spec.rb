@@ -11,4 +11,11 @@ describe PredragsDummyPipelines do
     expect(e).not_to be nil
     expect(e.cmd).to eq([])
   end
+
+  it 'creates Pipeline object from text' do
+    actions = "build: \n - cmd: []\n - test: []"
+    pip = PredragsDummyPipelines.new(actions)
+    expect(pip).not_to be nil
+    expect(pip.build_results).to eq([[], []])
+  end
 end

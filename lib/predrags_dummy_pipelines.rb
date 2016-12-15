@@ -5,9 +5,8 @@ require "psych"
 module PredragsDummyPipelines
   # Your code goes here...
 
-  def new(file)
-      actions = parse(file)
-      #Pipelines::Pipeline.new(actions)
+  def self.new(yaml)
+      actions = parse(yaml)
       Pipeline.new(actions)
   end
 
@@ -17,8 +16,11 @@ module PredragsDummyPipelines
   def self.parse_
     parse("project/simple.yml")
   end
-  def self.parse(file)
+  def self.parse_file(file)
     project = Psych.load_file(file)
+  end
+  def self.parse(actions)
+    Psych.load(actions)
   end
 
 
@@ -37,6 +39,10 @@ module PredragsDummyPipelines
     def show
       puts @build.show
       @deploys.map {|deploy| puts deploy.show }
+    end
+
+    def build_results
+      @build.results
     end
   end
 
