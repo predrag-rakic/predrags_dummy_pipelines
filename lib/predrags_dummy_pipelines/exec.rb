@@ -25,7 +25,7 @@ module PredragsDummyPipelines
           results << [%x[#{c}], $?.exitstatus]
           break if should_break and $?.exitstatus != 0
         rescue => e
-          results << [e, $?.exitstatus]
+          results << [e.inspect, $?.exitstatus]
           break if should_break
         end
       }

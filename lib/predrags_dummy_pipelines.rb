@@ -14,7 +14,7 @@ module PredragsDummyPipelines
     Exec.new(parse_["build"])
   end
   def self.parse_
-    parse("project/simple.yml")
+    parse_file("project/simple.yml")
   end
   def self.parse_file(file)
     project = Psych.load_file(file)
