@@ -9,6 +9,6 @@ describe PredragsDummyPipelines do
     actions = "build: \n  cmd: []\n  test: []"
     pip = PredragsDummyPipelines.new(actions)
     expect(pip).not_to be nil
-    expect(pip.build_results).to eq({cmd: [], test: []})
+    expect(pip.build_results).to eq({cmd: [], test: [], name: "build"})
   end
 end

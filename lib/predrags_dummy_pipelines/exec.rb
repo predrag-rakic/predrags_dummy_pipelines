@@ -37,7 +37,7 @@ module PredragsDummyPipelines
     end
 
     def results
-      {:cmd => @cmd_results, :test => @test_results}
+      {:cmd => @cmd_results, :test => @test_results, name: @name}
     end
   end
 end

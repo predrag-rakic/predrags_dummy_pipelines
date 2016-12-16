@@ -20,6 +20,10 @@ module PredragsDummyPipelines
     def build_results
       @build.results
     end
+
+    def deploy_results
+      @deploys.map {|deploy| deploy.results}
+    end
   end
 
 end
