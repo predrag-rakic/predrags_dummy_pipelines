@@ -33,7 +33,7 @@ module PredragsDummyPipelines
     end
 
     def show
-      [{exec_name: @name, cmd: @cmd, test: @test}, @cmd_results, @test_results]
+      [{exec_name: @name}, @cmd_results, @test_results]
     end
 
     def results
