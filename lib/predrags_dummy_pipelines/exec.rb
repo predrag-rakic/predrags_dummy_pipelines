@@ -15,17 +15,17 @@ module PredragsDummyPipelines
 
     def run
       run_cmd(@cmd, @cmd_results, true)
-      return if @cmd_results.last.last != 0
+      return if @cmd_results.last[:estatus] != 0
       run_cmd(@test, @test_results, false)
     end
 
     def run_cmd(commands, results, should_break)
       commands.each {|c|
         begin
-          results << [c, %x[#{c}] || "", $?.exitstatus]
+          results << {:input => c, :output => %x[#{c}] || "", :estatus => $?.exitstatus}
           break if should_break and $?.exitstatus != 0
         rescue => e
-          results << [c, e.inspect, $?.exitstatus]
+          results << {:input => c, :output => e.inspect, :estatus => $?.exitstatus}
           break if should_break
         end
       }
@@ -37,7 +37,7 @@ module PredragsDummyPipelines
     end
 
     def results
-      [@cmd_results, @test_results]
+      {:cmd => @cmd_results, :test => @test_results}
     end
   end
 end

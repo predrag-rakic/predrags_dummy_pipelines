@@ -31,6 +31,7 @@ describe PredragsDummyPipelines::Exec do
     expect(e).not_to be nil
     expect(e.cmd).to eq(["echo foo"])
     e.run
-    expect(e.results).to eq([[["echo foo", "foo\n", 0]], []])
+    expect(e.results[:cmd]).to eq([{input: "echo foo", output: "foo\n", estatus: 0}])
+    expect(e.results[:test]).to eq([])
   end
 end

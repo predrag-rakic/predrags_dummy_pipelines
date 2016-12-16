@@ -27,8 +27,9 @@ module PredragsDummyPipelines
 
   def self.test
     a = PredragsDummyPipelines.parse_
-    e = PredragsDummyPipelines::Pipeline.new a
-    e.run
-    e.show
+    pip = PredragsDummyPipelines::Pipeline.new a
+    pip.run
+    pip.show
+    pip
   end
 end
