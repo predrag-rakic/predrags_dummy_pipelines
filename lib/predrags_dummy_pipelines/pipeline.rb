@@ -1,6 +1,8 @@
 module PredragsDummyPipelines
 
   class Pipeline
+    attr_reader :build
+
     def initialize(actions)
       @build   = Exec.new(actions["build"], "build")
       deploys  = actions.select {|a,b| a != "build"}
@@ -26,7 +28,7 @@ module PredragsDummyPipelines
     end
 
     def success?
-      @build.success?
+      @build.success? and @deploys.map {|deploy| deploy.success?}.all? {|estat| estat == true}
     end
   end
 

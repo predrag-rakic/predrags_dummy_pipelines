@@ -16,7 +16,7 @@ describe PredragsDummyPipelines do
     actions = "build: \n  cmd:\n   - echo\n  test: []"
     pip = PredragsDummyPipelines.new(actions)
     expect(pip).not_to be nil
-    expect(pip.success?).to eq(false)
+    expect(pip.success?).to eq(true)
   end
 
   it 'calls success? - true' do

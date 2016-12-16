@@ -32,8 +32,8 @@ module PredragsDummyPipelines
     end
 
     def success_impl(results)
-      return false if (results == [])
-      results.each {|cmd| cmd[:estatus]}.all? {|status| status == 0}
+      return true if (results == [])
+      results.map {|cmd| cmd[:estatus]}.all? {|status| status == 0}
     end
 
     private

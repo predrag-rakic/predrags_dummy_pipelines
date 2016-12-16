@@ -39,9 +39,9 @@ describe PredragsDummyPipelines::Exec do
     actions = {"cmd" => nil}
     e = PredragsDummyPipelines::Exec.new(actions, "name")
     expect(e).not_to be nil
-    expect(e.success?).to eq(false)
+    expect(e.success?).to eq(true)
     e.run
-    expect(e.success?).to eq(false)
+    expect(e.success?).to eq(true)
   end
 
   it 'calls success? - true' do
