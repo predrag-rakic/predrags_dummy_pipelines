@@ -22,7 +22,7 @@ module PredragsDummyPipelines
     def run_cmd(commands, results, should_break)
       commands.each {|c|
         begin
-          results << [%x[#{c}], $?.exitstatus]
+          results << [%x[#{c}] || "", $?.exitstatus]
           break if should_break and $?.exitstatus != 0
         rescue => e
           results << [e.inspect, $?.exitstatus]
