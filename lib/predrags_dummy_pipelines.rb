@@ -1,5 +1,6 @@
 require "predrags_dummy_pipelines/version"
 require "predrags_dummy_pipelines/exec"
+require "predrags_dummy_pipelines/pipeline"
 require "psych"
 
 module PredragsDummyPipelines
@@ -23,28 +24,6 @@ module PredragsDummyPipelines
     Psych.load(actions)
   end
 
-
-  class Pipeline
-    def initialize(actions)
-      @build   = Exec.new(actions["build"], "build")
-      deploys  = actions.select {|a,b| a != "build"}
-      @deploys = deploys.map {|key, value| Exec.new(value, key)}
-    end
-
-    def run
-      @build.run
-      @deploys.map {|deploy|  deploy.run  }
-    end
-
-    def show
-      puts @build.show
-      @deploys.map {|deploy| puts deploy.show }
-    end
-
-    def build_results
-      @build.results
-    end
-  end
 
   def self.test
     a = PredragsDummyPipelines.parse_
