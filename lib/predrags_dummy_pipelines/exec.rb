@@ -1,16 +1,16 @@
 module PredragsDummyPipelines
 
   class Exec
+    attr_reader :name
+    attr_reader :cmd
+    attr_reader :test
+
     def initialize(actions, name)
       @name = name
-      @cmd  = actions.select {|a| a.key? "cmd"}.first["cmd"]
-      @test = actions.select {|a| a.key? "test"}.first["test"]
+      @cmd  = actions["cmd"]  || []
+      @test = actions["test"] || []
       @cmd_results = []
       @test_results = []
-    end
-
-    def cmd
-      @cmd
     end
 
     def run
@@ -22,10 +22,10 @@ module PredragsDummyPipelines
     def run_cmd(commands, results, should_break)
       commands.each {|c|
         begin
-          results << [%x[#{c}] || "", $?.exitstatus]
+          results << [c, %x[#{c}] || "", $?.exitstatus]
           break if should_break and $?.exitstatus != 0
         rescue => e
-          results << [e.inspect, $?.exitstatus]
+          results << [c, e.inspect, $?.exitstatus]
           break if should_break
         end
       }
