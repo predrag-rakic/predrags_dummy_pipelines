@@ -1,6 +1,6 @@
 build:
   cmd:
-   - ls lib
+   - ls -l lib
    - df -h
   test:
    - free -m
@@ -22,7 +22,7 @@ production:
 
 production2:
   cmd:
-    - find . -name "lib"
+    - find . -name "/tmp"
   test:
     - asdf
     - po12

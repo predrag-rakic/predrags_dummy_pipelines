@@ -24,6 +24,10 @@ module PredragsDummyPipelines
     def deploy_results
       @deploys.map {|deploy| deploy.results}
     end
+
+    def success?
+      @build.success?
+    end
   end
 
 end

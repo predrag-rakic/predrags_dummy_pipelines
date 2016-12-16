@@ -34,4 +34,27 @@ describe PredragsDummyPipelines::Exec do
     expect(e.results[:cmd]).to eq([{input: "echo foo", output: "foo\n", estatus: 0}])
     expect(e.results[:test]).to eq([])
   end
+
+  it 'calls success? - no commands or not run' do
+    actions = {"cmd" => nil}
+    e = PredragsDummyPipelines::Exec.new(actions, "name")
+    expect(e).not_to be nil
+    expect(e.success?).to eq(false)
+    e.run
+    expect(e.success?).to eq(false)
+  end
+
+  it 'calls success? - true' do
+    actions = {"cmd" => ["echo"], "test" => ["ls"]}
+    e = PredragsDummyPipelines::Exec.new(actions, "name")
+    e.run
+    expect(e.success?).to eq(true)
+  end
+
+  it 'calls success? - false' do
+    actions = {"cmd" => ["echo"], "test" => ["lssdfghgfdsa"]}
+    e = PredragsDummyPipelines::Exec.new(actions, "name")
+    e.run
+    expect(e.success?).to eq(false)
+  end
 end
