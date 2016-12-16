@@ -9,7 +9,7 @@ module PredragsDummyPipelines
 
     def run
       @build.run
-      @deploys.map {|deploy|  deploy.run  }
+      @deploys.map {|deploy|  deploy.run if success? }
     end
 
     def show
